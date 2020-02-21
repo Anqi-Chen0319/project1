@@ -1,0 +1,18 @@
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2010.ibtracs_all.v03r10.csv
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2011.ibtracs_all.v03r10.csv
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2012.ibtracs_all.v03r10.csv
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2013.ibtracs_all.v03r10.csv
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2014.ibtracs_all.v03r10.csv
+curl -O ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.2015.ibtracs_all.v03r10.csv
+cut -d "," -f 1-12 Year.2010.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+cut -d "," -f 1-12 Year.2011.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+cut -d "," -f 1-12 Year.2012.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+cut -d "," -f 1-12 Year.2013.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+cut -d "," -f 1-12 Year.2014.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+cut -d "," -f 1-12 Year.2015.ibtracs_all.v03r10.csv >> ibtracs-2010-2015.csv
+sort +1 ibtracs-2010-2015.csv | uniq -u | cut -d "," -f 1 > ../output/serial-numbers.txt
+cut -d "," -f 2 ibtracs-2010-2015.csv | sort |uniq -c > | head -n -2 > ../output/records-per-year.txt
+cut -d "," -f 4 ibtracs-2010-2015.csv | sort |uniq -c | head -n -2 > ../output/basin-frequencies.txt
+cut -d "," -f 5 ibtracs-2010-2015.csv | sort |uniq -c | head -n -2 > ../output/sub-basin-frequencies.txt
+
+
